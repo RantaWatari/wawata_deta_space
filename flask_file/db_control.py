@@ -1,6 +1,7 @@
 from flask import g,current_app,jsonify
 import datetime
 from deta import Deta
+import os
 
 def get_db():
     db = Deta(project_key="c0h15t2h_R5jA9bTpwsmwSTnZoXgA1p9uHrSFGAEV")
@@ -10,11 +11,23 @@ def get_db():
 def show_db():
     db = get_db()
     fetch_data = db.fetch()
-    for i in fetch_data:
-        datas = i
-    posts = []
-    for j in datas:
-        posts.append(j)
+    
+    # (2023/1/12)
+    # Detaにデプロイしたコードはこのままでも正しく動くけど、ローカル環境では20行目でエラーが出る。
+    # ローカル環境ではFetchResponseの.count,.itemsは動くが、
+    # デプロイした環境ではAttributeErrorを出す。
+    # db.fetchはローカル環境でFetchResponseオブジェクト、デプロイ環境ではgeneratorオブジェクトとして扱われる。
+    
+    try:  
+        ## Usefull only deploy enviroment
+        for i in fetch_data:
+            datas = i
+        posts = []
+        for j in datas:
+            posts.append(j)
+    except TypeError:
+        ## Usefull Only local enviroment
+        posts = fetch_data.items
 
     return posts
 
