@@ -1,0 +1,1 @@
+{"id":"9bda0c3b-d4bd-4a9d-959e-d9740d65eb7d","space":46119,"runtime":"python3.9","name":"flask_file","path":"kyrog1","project":"c0h15t2h","account":"144798365827","region":"ap-southeast-1","deps":["flask"],"envs":null,"public":true,"log_level":"debug","cron":""}

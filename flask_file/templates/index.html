@@ -12,8 +12,8 @@
     UPDATE
     <form action="/" method="post">
         {% for post in posts%}
-            <input name="update_texts" value="{{post[1]}}" required><br>
-            <input type="hidden" name="update_id" value="{{post[0]}}">
+            <input name="update_texts" value="{{post['text']}}" required><br>
+            <input type="hidden" name="update_id" value="{{post['key']}}">
         {% endfor %}
         <input type="hidden" name="sql_cmd" value="update">        
         <input type="submit">
@@ -22,7 +22,7 @@
     DELETE
     <form action="/" method="post">
         {% for post in posts%}
-            <input type="checkbox" name="delete_id" value="{{post[0]}}">{{post[1]}}<br>
+            <input type="checkbox" name="delete_id" value="{{post['key']}}">{{post["text"]}}<br>
         {% endfor %}
         <input type="hidden" name="sql_cmd" value="delete">
         <input type="submit">
@@ -40,7 +40,7 @@
 
 ##STORED DATE## <br>
 {% for post in posts%}
-    {{post[2]}} : {{post[1]}} <br>
+    {{post["key"]}} : {{post["text"]}} <br>
 {% endfor %}
 
 {% endblock %}
