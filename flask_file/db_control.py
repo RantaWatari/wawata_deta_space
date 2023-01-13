@@ -12,12 +12,7 @@ def show_db():
     db = get_db()
     fetch_data = db.fetch()
     
-    # (2023/1/12)
-    # Detaにデプロイしたコードはこのままでも正しく動くけど、ローカル環境では20行目でエラーが出る。
-    # ローカル環境ではFetchResponseの.count,.itemsは動くが、
-    # デプロイした環境ではAttributeErrorを出す。
-    # db.fetchはローカル環境でFetchResponseオブジェクト、デプロイ環境ではgeneratorオブジェクトとして扱われる。
-    
+    #(3)
     try:  
         ## Usefull only deploy enviroment
         for i in fetch_data:
@@ -29,23 +24,18 @@ def show_db():
         ## Usefull Only local enviroment
         posts = fetch_data.items
 
+    posts = posts.copy()
     return posts
 
 def insert_db(insert_text):
-    key = str(len(show_db()))
-    # (1/11)
-    # Detaの.put()はdict,list,str,int,float,bool以外は引数として入れることが出来ない。
-    # TypeError: Object of type datetime is not JSON serializable
-    #
+    post = show_db()
+    p = [int(post[i]["key"]) for i in range(len(post))]
+    post_max = max(p)
+    key = str(post_max+1)
 
-    # (1/11)
-    # urllib.error.HTTPError: HTTP Error 400: Bad Request
-    # requestのpayloadがおかしい？パラメータがおかしい？文字化け？
-    # 原因：keyはstrかNoneのみ有効。gitのhttps://github.com/orgs/deta/discussions?discussions_q=urllib.error.HTTPError%3A+HTTP+Error+400%3A+Bad+Request+で調べたら答えが見つかった。
-    # docsにも書いてあった。
-
+    # (1),(2)
     get_db().put({ 
-        "key": key,
+       "key": key,
         "text": insert_text,
     })
     
