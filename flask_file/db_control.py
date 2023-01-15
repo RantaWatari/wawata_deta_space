@@ -25,7 +25,10 @@ def show_db():
         posts = fetch_data.items
 
     posts = posts.copy()
-    #print(posts)
+
+    # データ確認用
+    #[print(i) for i in posts]
+    
     return posts
 
 def now_time():
