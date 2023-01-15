@@ -23,8 +23,14 @@ def index():
         elif sql_cmd == "update":
             update_texts = request.form.getlist("update_texts")
             update_id = request.form.getlist("update_id")
-            updata = zip(update_id,update_texts)
-            [update_db(i,j) for i,j in updata]
+            
+            for i in range(len(update_texts)):
+
+                print(i,show_db()[i],str(update_id[i]),update_texts[i])
+                
+                if show_db()[i][str(update_id[i])] != update_texts[i]:
+                    update_db(update_id[i],update_texts[i])
+
         else:
             pass
 

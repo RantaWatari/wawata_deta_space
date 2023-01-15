@@ -3,8 +3,8 @@ https://github.com/RantaWatari/wawata.deta.dev.git
 
 ※注意：本番環境ではDetaのProjectkeyは機密にすること。理由はProjectkeyを使ってデータベースに直接アクセス出来るため。
 
-
 Memo
+
 (1)
     # (1/11)
     # Detaの.put()はdict,list,str,int,float,bool以外は引数として入れることが出来ない。
