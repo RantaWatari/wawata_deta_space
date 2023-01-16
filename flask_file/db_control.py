@@ -19,6 +19,9 @@ def show_db():
             datas = i
         posts = []
         for j in datas:
+#            time_year_min = 0
+#            j.update(time=time_year_min)
+#            print(j,time_year_min)
             posts.append(j)
     except TypeError:
         ## Usefull Only local enviroment
@@ -58,10 +61,10 @@ def insert_db(insert_text):
        "text": insert_text,
     })
     
-def delete_db(delete_id):
-    get_db().delete(delete_id)
+def delete_db(delete_key):
+    get_db().delete(delete_key)
     
-def update_db(update_id,update_text):
+def update_db(update_key,update_text):
 
     # 今のままだと全ての時間が更新されてしまう。
     # 元のデータと更新後のデータを比較して、テキストが異なるものだけテキストと時間を更新するアルゴリズムを考えていたが、全数探索だから計算時間が掛かる。
@@ -71,5 +74,5 @@ def update_db(update_id,update_text):
     get_db().update({
         "time": time,
         "text": update_text
-    },update_id)
+    },update_key)
     #print(update_id)

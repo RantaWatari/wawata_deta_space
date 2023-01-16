@@ -1,5 +1,5 @@
 from flask import Flask
-import db_control,server
+import server
 from deta import Deta
 
 db = Deta(project_key="c0h15t2h_R5jA9bTpwsmwSTnZoXgA1p9uHrSFGAEV")

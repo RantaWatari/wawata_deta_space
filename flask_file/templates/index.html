@@ -40,7 +40,7 @@
 
 ##STORED DATE## <br>
 {% for post in posts%}
-    {{post["time"]}} : {{post["text"]}} <br>
+    {{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}} <br>
 {% endfor %}
 
 {% endblock %}
