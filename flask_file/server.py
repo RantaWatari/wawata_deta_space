@@ -23,12 +23,13 @@ def index():
         elif sql_cmd == "update":
             update_texts = request.form.getlist("update_texts")
             update_id = request.form.getlist("update_id")
-            
+
+            db_items = show_db().copy()
             for i in range(len(update_texts)):
-                # show_db()とformのlistの配置順が同じ状態であれば問題ない。
-                if show_db()[i]["text"] != update_texts[i]:
+                if db_items[i]["key"] == update_id[i] and db_items[i]["text"] != update_texts[i]:
                     update_db(update_id[i],update_texts[i])
-                    print(f"i={i},id={update_id[i]},text={update_texts[i]}")
+                    #確認用
+                    #print(f"update i={i},id={update_id[i]},text={update_texts[i]}")
 
         else:
             pass
