@@ -1,10 +1,69 @@
 
 body{
     --text-bright-color:#fff;
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../img/enigma.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)), url(../img/enigma.jpg);
     background-position: center;
 	background-size: cover;
 	background-size: cover;
 	color: #fff;
 	color: var(--text-bright-color);
+}
+
+
+section{
+	align-items: center;
+	justify-content: center;
+	text-align:center;
+	display: flex;
+}
+
+
+.con {
+	display: flex;
+	flex-direction: column;
+}
+a{
+	text-align: left;
+}
+
+
+ul{	
+	padding-left: 0px;
+}
+
+li{
+	text-align: left;
+	float: auto;
+	overflow: hidden;
+}
+
+.button{
+	margin-right: 10px;
+	font-style: normal;
+}
+
+strong{
+	font-size: 25px;
+}
+
+@media screen and (max-width: 786px){
+	.button{
+		font-size: 20px;
+		color: green;
+	}
+}
+
+
+@media screen and (min-width: 786px){
+	.button{
+		font-size: 20px;
+		color: red;
+	}
+}
+
+@media screen and (min-width: 1200px){
+	.button{
+		font-size: 20px;
+		color: purple;
+	}
 }
