@@ -1,15 +1,29 @@
-from flask import render_template,request,Blueprint
+from flask import render_template,request,Blueprint,redirect,session
 from db_control import show_db,insert_db,delete_db,update_db
+import os
 
 bp =Blueprint("server",__name__)
 
 @bp.route("/",methods=["GET","POST"])
 def index():
+    #print(f"##heders##\n{request.headers}")
+    print(f"##referrer##:\n{request.referrer}")
+    #print(f"##access_root##:\n{request.access_route}")
+    # print(os.system("dir"))
+
+    if request.referrer == None:
+        session["select"] = False
+        session["log"] = None
+
+
     if request.method == "GET":
         select = request.args.get("select")
-        return render_template("index.html",select=select,posts=show_db())
+        if select:
+            session["select"] = True
+        return render_template("index.html",select=select,log=session["log"],posts=show_db())
 
-    if request.method == "POST":
+    # ブラウザバック後にリロードを行うと処理が出来てしまう。
+    if request.method == "POST" and session["select"]: 
         sql_cmd = request.form.get("sql_cmd")
 
         if sql_cmd == "insert":
@@ -28,10 +42,12 @@ def index():
             for i in range(len(update_texts)):
                 if db_items[i]["key"] == update_id[i] and db_items[i]["text"] != update_texts[i]:
                     update_db(update_id[i],update_texts[i])
-                    #確認用
-                    #print(f"update i={i},id={update_id[i]},text={update_texts[i]}")
 
-        else:
-            pass
+        session["select"] = False
+        session["log"] = "True"
+        return redirect(location="/")
+    else:
+        session["select"] = False
+        session["log"] = "Error"
+        return redirect(location="/")
 
-        return render_template("index.html",posts=show_db())

@@ -3,7 +3,9 @@
 
 <section>
     <div class="con">
-    <a href="/">HOME/</a>
+        <div class="home-button">
+            <a href="/">HOME</a>
+        </div>
     {% if select == "insert"%}
         <strong>INSERT</strong> 
         <form action="/" method="post">
@@ -26,13 +28,13 @@
         <strong>DELETE</strong>
         <form action="/" method="post">
             <ul type="None">
-            {% for post in posts%}
-                <li>
-                    <input type="checkbox" id="{{post['key']}}" name="delete_id" value="{{post['key']}}">
-                    <label class="button" for="{{post['key']}}">{{post['text']}}</label>
-                </li>
-            {% endfor %}
-            </ul>
+                {% for post in posts%}
+                    <li>
+                        <input type="checkbox" id="{{post['key']}}" name="delete_id" value="{{post['key']}}">
+                        <label class="button" for="{{post['key']}}">{{post['text']}}</label>
+                    </li>
+                {% endfor %}
+                </ul>
             <input type="hidden" name="sql_cmd" value="delete">
             <input class="button" type="submit" value="DELETE">
         </form>
@@ -46,11 +48,12 @@
     {% endif %}
 
     <ul type="None">
-    <strong class="title">##STORED DATE##</strong>
-    {% for post in posts%}
-        <li>{{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}}</li>
-    {% endfor %}
-    </ul>
+        <h6>Log | {{log}}</h6>
+        <strong class="title">##STORED DATE##</strong>
+        {% for post in posts%}
+            <li>{{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}}</li>
+        {% endfor %}
+        </ul>
     </div>
 </section>
 {% endblock %}
