@@ -26,6 +26,8 @@ def show_db():
     posts = posts.copy()
 
     posts = sort(posts)
+    # データ確認用
+    #[print(i) for i in posts]
 
     return posts
 

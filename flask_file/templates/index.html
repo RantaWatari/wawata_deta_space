@@ -48,8 +48,15 @@
     {% endif %}
 
     <ul type="None">
-        <h6>Log | {{log}}</h6>
-        <strong class="title">##STORED DATE##</strong>
+        <h6>LOG : {{log_text}} | {{now_time[0]}}/{{now_time[1]}}/{{now_time[2]}} {{now_time[3]}}:{{now_time[4]}}:{{now_time[5]}}</h6>
+            {% if logs == None %}
+                <h6>-----</h6>
+            {% else %}
+                {% for log in logs%}
+                    <h6>{{log["time"][0]}}/{{log["time"][1]}}/{{log["time"][2]}} {{log["time"][3]}}:{{log["time"][4]}}:{{log["time"][5]}} | {{log["text"]}}</h6>
+                {% endfor %}  
+            {% endif %}
+            <strong class="title">##STORED DATE##</strong>
         {% for post in posts%}
             <li>{{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}}</li>
         {% endfor %}

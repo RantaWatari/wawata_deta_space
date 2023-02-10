@@ -42,6 +42,10 @@ ul{
 	padding-left: 0px;	
 	overflow-wrap: break-word;
 }
+h6{
+	margin: 0%;
+	text-align: left;
+}
 
 li{
 	text-align: left;
