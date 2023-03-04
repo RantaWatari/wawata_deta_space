@@ -11,8 +11,11 @@ def index():
     #print(f"##access_root##:\n{request.access_route}")
     # print(os.system("dir"))
 
-    if request.referrer == None or session["log"] == []:
+    if request.referrer == None:
         session["log_text"] = None
+        session["log"] = None
+    # request.referrerがNoneにならない場合、session["log"]が無いためにKeyErrorになる。
+    if session["log"] == []:
         session["log"] = None
 
     if request.method == "GET":
