@@ -1,5 +1,6 @@
-https://wawata.deta.dev/
-https://github.com/RantaWatari/wawata.deta.dev.git
+https://space_test1-1-i5206998.deta.app/
+
+https://github.com/RantaWatari/wawata_deta_space.git
 
 ※注意：本番環境ではDetaのProjectkeyは機密にすること。理由はProjectkeyを使ってデータベースに直接アクセス出来るため。
 ※注意：（自分用）Flask runが正常に動かない場合はwindows環境変数のpythonバージョンを確認すること。
