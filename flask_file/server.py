@@ -6,15 +6,16 @@ bp =Blueprint("server",__name__)
 
 @bp.route("/",methods=["GET","POST"])
 def index():
-    #print(f"##heders##\n{request.headers}")
+    print(f"##heders##\n{request.headers}")
     print(f"##referrer##:\n{request.referrer}")
-    #print(f"##access_root##:\n{request.access_route}")
+    print(f"##access_root##:\n{request.access_route}")
     # print(os.system("dir"))
 
     if request.referrer == None:
         session["log_text"] = None
         session["log"] = None
     # request.referrerがNoneにならない場合、session["log"]が無いためにKeyErrorになる。
+    # 例えば、https://search.yahoo.co.jp/などから来た場合、errorが出る。
     if session["log"] == []:
         session["log"] = None
 
