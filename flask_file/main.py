@@ -2,8 +2,6 @@ from flask import Flask
 import server
 from deta import Deta
 
-db = Deta(project_key="c0h15t2h_vGPSZCu2Zaqnw6bgHgFfFVrc6yrju65W")
-db = db.Base(name="flask_file")
 app = Flask(__name__)
 app.secret_key="test"
 
